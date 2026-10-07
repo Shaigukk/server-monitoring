@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мониторинг сервера</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <div class="brand">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="1" y="1" width="30" height="30" rx="7"></rect>
+          <path d="M6 20h4l3-9 4 14 3-8h6"></path>
+        </svg>
+        <div>
+          <p class="eyebrow">Учебный прототип</p>
+          <h1>Мониторинг сервера</h1>
+        </div>
+      </div>
+      <div class="status">
+        <p id="host" class="status-main">—</p>
+        <p id="taken" class="status-sub">Показатели ещё не собраны</p>
+        <p id="link" class="link" data-state="wait"><span></span>ожидание</p>
+      </div>
+    </header>
+
+    <p id="banner" class="banner" hidden>Связь с программой потеряна. На экране остались последние показатели.</p>
+
+    <section id="metrics" class="metrics" aria-label="Показатели"></section>
+
+    <div class="lower">
+      <section class="panel" aria-labelledby="alerts-title">
+        <div class="panel-head">
+          <h2 id="alerts-title">Оповещения</h2>
+          <span id="alert-count" class="count">0</span>
+        </div>
+        <div id="alerts" class="alerts"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="settings-title">
+        <div class="panel-head">
+          <h2 id="settings-title">Пороги</h2>
+        </div>
+        <form id="settings" class="settings">
+          <label>Процессор, %
+            <input id="cpu-limit" name="cpu" type="number" min="1" max="100" required>
+          </label>
+          <label>Память, %
+            <input id="memory-limit" name="memory" type="number" min="1" max="100" required>
+          </label>
+          <label>Диск, %
+            <input id="disk-limit" name="disk" type="number" min="1" max="100" required>
+          </label>
+          <button type="submit">Сохранить</button>
+          <p id="settings-note" class="note" role="status"></p>
+        </form>
+      </section>
+    </div>
+
+    <section class="panel log-panel" aria-labelledby="log-title">
+      <div class="panel-head">
+        <h2 id="log-title">Журнал</h2>
+        <span class="hint">новые строки внизу</span>
+      </div>
+      <pre id="log" class="log" tabindex="0">Журнал пуст.</pre>
+    </section>
+
+    <footer>
+      Программа только читает показатели и не меняет службы компьютера.
+      Страница доступна устройствам этой локальной сети.
+    </footer>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
