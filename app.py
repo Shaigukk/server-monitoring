@@ -248,11 +248,11 @@ def publish(sample, poll=True):
     with LOCK:
         previous = set(PREVIOUS)
     if poll:
-        cpu = sample["cpu"] if sample["cpu"] is not None else "—"
+        cpu = sample["cpu"] if sample["cpu"] is not None else "н/д"
         memory = (sample.get("memory") or {}).get("percent")
-        memory_text = memory if memory is not None else "—"
+        memory_text = memory if memory is not None else "н/д"
         disks = " ".join(
-            "%s:%s" % (disk["letter"], disk["percent"] if disk["percent"] is not None else "—")
+            "%s:%s" % (disk["letter"], disk["percent"] if disk["percent"] is not None else "н/д")
             for disk in sample["disks"]
         ) or "нет"
         append_log("опрос", "ЦП %s%%, память %s%%, диски %s" % (cpu, memory_text, disks))

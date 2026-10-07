@@ -10,17 +10,14 @@
   <div class="page">
     <header class="top">
       <div class="brand">
-        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
-          <rect x="1" y="1" width="30" height="30" rx="7"></rect>
-          <path d="M6 20h4l3-9 4 14 3-8h6"></path>
-        </svg>
+        <span class="mark" aria-hidden="true">МС</span>
         <div>
-          <p class="eyebrow">Учебный прототип</p>
           <h1>Мониторинг сервера</h1>
+          <p class="lede">Загрузка, память, диски и оповещения этого компьютера.</p>
         </div>
       </div>
       <div class="status">
-        <p id="host" class="status-main">—</p>
+        <p id="host" class="status-main">Этот компьютер</p>
         <p id="taken" class="status-sub">Показатели ещё не собраны</p>
         <p id="link" class="link" data-state="wait"><span></span>ожидание</p>
       </div>
@@ -28,7 +25,23 @@
 
     <p id="banner" class="banner" hidden>Связь с программой потеряна. На экране остались последние показатели.</p>
 
-    <section id="metrics" class="metrics" aria-label="Показатели"></section>
+    <section id="metrics" class="metrics" aria-busy="true" aria-label="Показатели">
+      <article class="card is-skeleton" aria-hidden="true">
+        <div class="card-top"><span class="bone w1"></span><span class="bone w2"></span></div>
+        <span class="bone w3"></span>
+        <span class="bone w4"></span>
+      </article>
+      <article class="card is-skeleton" aria-hidden="true">
+        <div class="card-top"><span class="bone w1"></span><span class="bone w2"></span></div>
+        <span class="bone w3"></span>
+        <span class="bone w4"></span>
+      </article>
+      <article class="card is-skeleton" aria-hidden="true">
+        <div class="card-top"><span class="bone w1"></span><span class="bone w2"></span></div>
+        <span class="bone w3"></span>
+        <span class="bone w4"></span>
+      </article>
+    </section>
 
     <div class="lower">
       <section class="panel" aria-labelledby="alerts-title">
