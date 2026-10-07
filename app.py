@@ -7,6 +7,7 @@
 
 import json
 import socket
+import sys
 import threading
 import time
 from datetime import datetime
@@ -17,10 +18,25 @@ from urllib.parse import urlparse
 
 import psutil
 
-ROOT = Path(__file__).resolve().parent
-CONFIG_PATH = ROOT / "config.json"
+def resource_dir():
+    """Страница и образец настроек: рядом со скриптом или внутри exe."""
+    if getattr(sys, "frozen", False):
+        return Path(getattr(sys, "_MEIPASS", Path(sys.executable).resolve().parent))
+    return Path(__file__).resolve().parent
+
+
+def data_dir():
+    """Журнал и рабочие настройки пишутся рядом с программой, не во временную папку."""
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parent
+
+
+ROOT = resource_dir()
+DATA = data_dir()
+CONFIG_PATH = DATA / "config.json"
 EXAMPLE_PATH = ROOT / "config.example.json"
-LOG_PATH = ROOT / "monitor.log"
+LOG_PATH = DATA / "monitor.log"
 
 DEFAULTS = {
     "host": "0.0.0.0",
@@ -423,7 +439,7 @@ def serve(port=None):
             print("В локальной сети:     http://%s:%s" % (address, CONFIG["port"]))
     else:
         print("Адрес локальной сети не найден. Откройте страницу с этого компьютера.")
-    print("Остановка: Ctrl+C. Журнал дописывается в monitor.log.")
+    print("Остановка: Ctrl+C. Журнал: %s" % LOG_PATH)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

@@ -101,21 +101,7 @@ h1 {
 .status-main { font-variant-numeric: tabular-nums; }
 .status-sub { margin-top: 2px; color: var(--muted); font-size: 13px; }
 
-.link {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  margin: 8px 0 0;
-  font-size: 13px;
-}
-.link span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--muted);
-}
-.link[data-state="ok"] span { background: var(--ok); }
-.link[data-state="lost"] span { background: var(--hot); }
+.link { display: none; }
 
 .banner {
   margin: 16px 0 0;
@@ -242,7 +228,13 @@ h2 { margin: 0; font-size: 16px; font-weight: 650; }
 }
 .count[data-hot="1"] { color: #fff8f7; background: var(--hot); }
 
-.alerts { display: grid; gap: 8px; }
+.alerts {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  max-height: 168px;
+  overflow: auto;
+}
 .alert, .quiet {
   margin: 0;
   padding: 12px 14px;
@@ -295,7 +287,7 @@ h2 { margin: 0; font-size: 16px; font-weight: 650; }
 .note[data-bad="1"] { color: var(--hot); }
 
 .log {
-  max-height: 320px;
+  height: 168px;
   margin: 0;
   padding: 14px;
   overflow: auto;
@@ -337,7 +329,6 @@ footer {
 @media (prefers-reduced-motion: no-preference) {
   .bar i { transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s linear; }
   .bone { animation: sheen 1.4s ease-in-out infinite; }
-  .link[data-state="ok"] span { animation: pulse 2.4s ease-in-out infinite; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -348,7 +339,4 @@ footer {
   0% { background-position: 100% 0; }
   100% { background-position: -100% 0; }
 }
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.45; }
-}
+

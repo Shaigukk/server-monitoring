@@ -22,7 +22,18 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Адрес появится в консоли. На этом компьютере страница открывается как
+Адрес появится в консоли. На Windows тот же запуск даёт готовый файл
+`dist/monitoring.exe`: Python на том компьютере уже не нужен. Рядом с файлом
+появятся `config.json` и `monitor.log`. Сборка только для 64-битной Windows.
+Антивирус иногда останавливает такой файл из-за упаковщика. Это не признак
+вируса. Повторно файл собирается так:
+
+```
+.venv\Scripts\python -m pip install -r requirements.txt pyinstaller
+.venv\Scripts\python -m PyInstaller --noconfirm --clean monitoring.spec
+```
+
+На этом компьютере страница открывается как
 `http://127.0.0.1:8080`. С другого устройства локальной сети берётся адрес
 вида `http://192.168.x.x:8080`. Порт наружу не пробрасывать.
 
